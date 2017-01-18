@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F0144E81E2ECC5600F35662 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0144E71E2ECC5600F35662 /* CategoryCell.swift */; };
+		4F0144EA1E2EF2BC00F35662 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0144E91E2EF2BC00F35662 /* Models.swift */; };
 		4FD2E69E1E2EC42000CE55D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2E69D1E2EC42000CE55D2 /* AppDelegate.swift */; };
 		4FD2E6A01E2EC42000CE55D2 /* FeaturedAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2E69F1E2EC42000CE55D2 /* FeaturedAppsController.swift */; };
 		4FD2E6A31E2EC42000CE55D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2E6A11E2EC42000CE55D2 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		4F0144E71E2ECC5600F35662 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		4F0144E91E2EF2BC00F35662 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		4FD2E69A1E2EC42000CE55D2 /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD2E69D1E2EC42000CE55D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD2E69F1E2EC42000CE55D2 /* FeaturedAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedAppsController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				4FD2E69D1E2EC42000CE55D2 /* AppDelegate.swift */,
 				4FD2E69F1E2EC42000CE55D2 /* FeaturedAppsController.swift */,
 				4F0144E71E2ECC5600F35662 /* CategoryCell.swift */,
+				4F0144E91E2EF2BC00F35662 /* Models.swift */,
 				4FD2E6A11E2EC42000CE55D2 /* Main.storyboard */,
 				4FD2E6A41E2EC42000CE55D2 /* Assets.xcassets */,
 				4FD2E6A61E2EC42000CE55D2 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 				4FD2E6A01E2EC42000CE55D2 /* FeaturedAppsController.swift in Sources */,
 				4FD2E69E1E2EC42000CE55D2 /* AppDelegate.swift in Sources */,
 				4F0144E81E2ECC5600F35662 /* CategoryCell.swift in Sources */,
+				4F0144EA1E2EF2BC00F35662 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

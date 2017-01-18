@@ -10,6 +10,14 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var appCategory: AppCategory? {
+        didSet {
+            if let name = appCategory?.name {
+                nameLabel.text = name
+            }
+        }
+    }
+    
     private let cellId = "appCellId"
     
     override init(frame: CGRect) {
@@ -64,11 +72,16 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if let count = appCategory?.apps?.count {
+            return count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppCell
+        cell.app = appCategory?.apps?[indexPath.item]
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -86,7 +99,45 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
 }
 
 
+
+
+
+
 class AppCell: UICollectionViewCell {
+    
+    var app: App? {
+        didSet {
+            if let name = app?.name {
+                nameLabel.text = name
+                
+                let rect = NSString(string: name).boundingRect(with: CGSize(width: frame.width, height: 1000), options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
+                
+                if rect.height > 20 {
+                    categoryLabel.frame = CGRect(x: 0, y: frame.width + 38, width: frame.width, height: 20)
+                    priceLabel.frame = CGRect(x: 0, y: frame.width + 56, width: frame.width, height: 20)
+                } else {
+                    categoryLabel.frame = CGRect(x: 0, y: frame.width + 22, width: frame.width, height: 20)
+                    priceLabel.frame = CGRect(x: 0, y: frame.width + 40, width: frame.width, height: 20)
+                }
+                nameLabel.frame = CGRect(x: 0, y: frame.width + 5, width: frame.width, height: 40)
+                nameLabel.sizeToFit()
+                
+                
+            }
+            
+            categoryLabel.text = app?.category
+            
+            if let price = app?.price {
+                priceLabel.text = "$\(price)"
+            } else {
+                priceLabel.text = ""
+            }
+            
+            if let imageName = app?.imageName {
+                imageView.image = UIImage(named: imageName)
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,7 +147,6 @@ class AppCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "frozen")
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 16
         iv.layer.masksToBounds = true
@@ -134,6 +184,7 @@ class AppCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(categoryLabel)
         addSubview(priceLabel)
+        
         imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width)
         nameLabel.frame = CGRect(x: 0, y: frame.width + 2, width: frame.width, height: 40)
         categoryLabel.frame = CGRect(x: 0, y: frame.width + 38, width: frame.width, height: 20)
