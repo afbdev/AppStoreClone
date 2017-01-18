@@ -8,6 +8,29 @@
 
 import UIKit
 
+class FeaturedApps: NSObject {
+    
+    var bannerCategory: AppCategory?
+    var appCategories: [AppCategory]?
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        if key == "categories" {
+            appCategories = [AppCategory]()
+            
+            for dict in value as! [[String: AnyObject]] {
+                let appCategory = AppCategory()
+                appCategory.setValuesForKeys(dict)
+                appCategories?.append(appCategory)
+            }
+        } else if key == "bannerCategory" {
+            bannerCategory = AppCategory()
+            bannerCategory?.setValuesForKeys(value as! [String: AnyObject])
+        } else {
+            super.setValue(value, forKey: key)
+        }
+    }
+}
+
 class AppCategory: NSObject {
     
     var name: String?
@@ -30,7 +53,7 @@ class AppCategory: NSObject {
     }
     
     
-    static func fetchFeaturedApps(completionHandler: @escaping ([AppCategory]) -> ()) {
+    static func fetchFeaturedApps(completionHandler: @escaping (FeaturedApps) -> ()) {
         
         let urlString = "http://www.statsallday.com/appstore/featured"
         
@@ -45,17 +68,21 @@ class AppCategory: NSObject {
                 
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
                 
-                var appCategories = [AppCategory]()
+                let featuredApps = FeaturedApps()
+                featuredApps.setValuesForKeys(json as! [String: AnyObject])
                 
-                for dict in json["categories"] as! [[String: AnyObject]] {
-                    let appCategory = AppCategory()
-                    appCategory.setValuesForKeys(dict)
-                    appCategories.append(appCategory)
-                    
-                }
+                
+//                var appCategories = [AppCategory]()
+//                
+//                for dict in json["categories"] as! [[String: AnyObject]] {
+//                    let appCategory = AppCategory()
+//                    appCategory.setValuesForKeys(dict)
+//                    appCategories.append(appCategory)
+//                    
+//                }
                 
                 DispatchQueue.main.async {
-                    completionHandler(appCategories)
+                    completionHandler(featuredApps)
                 }
                 
                 
